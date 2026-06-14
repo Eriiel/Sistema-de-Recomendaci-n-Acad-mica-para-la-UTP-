@@ -1,1 +1,1 @@
-# Sistema-de-Recomendaci-n-Acad-mica-para-la-UTP-
+# Sistema-de-Recomendacion-Acadamica-para-la-UTP-
