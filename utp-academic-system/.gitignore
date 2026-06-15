@@ -1,0 +1,36 @@
+# Variables de entorno 
+.env
+
+# Archivos generados por Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+
+# Entornos virtuales
+venv/
+env/
+.venv/
+ENV/
+
+# Configuracion de IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
+
+# Archivos de Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# Logs
+*.log
+logs/
+
+# Archivos temporales de Streamlit
+.streamlit/
