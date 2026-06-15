@@ -399,13 +399,16 @@ def page_perfiles_estudiantes(df: pd.DataFrame):
         with cols_perfil[i]:
             n_est = len(df_filtrado[df_filtrado["cluster_label"] == perfil])
             prom = df_filtrado[df_filtrado["cluster_label"] == perfil]["promedio_general"].mean()
+            prom_str = f"{prom:.1f}" if not pd.isna(prom) else "N/A"
+            color = config['color']
+            descripcion = config['descripcion']
             st.markdown(f"""
-            <div style="border-left: 4px solid {config['color']}; 
+            <div style="border-left: 4px solid {color}; 
                         padding: 0.8rem; border-radius: 0 8px 8px 0;
                         background: #f8f9fa; height: 100%;">
-                <strong style="color:{config['color']};">{perfil}</strong><br>
-                <small>{config['descripcion']}</small><br><br>
-                <b>{n_est}</b> estudiantes | GPA prom: <b>{prom:.1f if not pd.isna(prom) else 'N/A'}</b>
+                <strong style="color:{color};">{perfil}</strong><br>
+                <small>{descripcion}</small><br><br>
+                <b>{n_est}</b> estudiantes | GPA prom: <b>{prom_str}</b>
             </div>
             """, unsafe_allow_html=True)
 
