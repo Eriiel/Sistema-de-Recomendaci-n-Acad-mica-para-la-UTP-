@@ -151,8 +151,7 @@ utp-academic-system/
 1. Clona el repositorio
 
 ```bash
-git clone https://github.com/tu_usuario/utp-academic-system.git
-cd utp-academic-system
+git clone https://github.com/Eriiel/Sistema-de-Recomendaci-n-Acad-mica-para-la-UTP-
 ```
 
 2. Crea y activa un entorno virtual
