@@ -277,12 +277,14 @@ Los limites del plan gratuito de Groq son suficientes para uso academico y demos
 
 ## Autores
 
-Desarrollado como proyecto integrador del curso de Ciencia de Datos.
+Desarrollado como parcial 2 del curso de Gestión de la informacion.
 Universidad Tecnologica de Panama.
 
-Si tienes preguntas o sugerencias, abre un Issue en el repositorio.
+Felix Beitia
+Gonzalo Hooker
+Maria Madrid
+Cristopher Quintero
+Eriol Tuñon
 
 
-## Licencia
 
-MIT License. Libre para uso academico y educativo.
