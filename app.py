@@ -38,26 +38,49 @@ st.set_page_config(
 
 st.markdown("""
 <style>
-    [data-testid="stSidebar"] { background-color: #0a2240; }
+    :root {
+        --utp-morado: #7a1c79;
+        --utp-morado-light: #f3e6f3;
+        --utp-dorado: #b98f00;
+        --utp-dorado-light: #fdf1d4;
+        --utp-dorado-text: #8a6b00;
+        --utp-rojo: #e52713;
+        --utp-rojo-light: #fbe1de;
+        --utp-rojo-text: #c41f0f;
+        --utp-verde: #004411;
+        --utp-verde-light: #ddeee1;
+        --utp-negro: #1d1d1b;
+        --utp-card-bg: #ffffff;
+        --utp-card-border: #e6dbe6;
+        --utp-text-muted: #5a5a5a;
+    }
+
+    [data-testid="stSidebar"] { background-color: var(--utp-morado) !important; }
     [data-testid="stSidebar"] * { color: #ffffff !important; }
     .sidebar-logo { text-align: center; padding: 1rem 0; }
+
     .kpi-card {
-        background: #f8f9fa;
+        background: var(--utp-card-bg);
+        border: 1px solid var(--utp-card-border);
         border-radius: 10px;
         padding: 1.2rem;
         text-align: center;
-        border-left: 5px solid #0a2240;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+        border-left: 5px solid var(--utp-morado);
+        box-shadow: 0 2px 6px rgba(29,29,27,0.08);
+        color: var(--utp-negro);
     }
-    .kpi-value { font-size: 2rem; font-weight: 700; color: #0a2240; }
-    .kpi-label { font-size: 0.85rem; color: #666; margin-top: 0.3rem; }
-    .riesgo-alto  { background: #fff3cd; border-left-color: #f39c12; }
-    .riesgo-critico { background: #f8d7da; border-left-color: #e74c3c; }
+    .kpi-value { font-size: 2rem; font-weight: 700; color: var(--utp-morado); }
+    .kpi-label { font-size: 0.85rem; color: var(--utp-text-muted); margin-top: 0.3rem; }
+
+    .riesgo-alto    { background: var(--utp-dorado-light); border-left-color: var(--utp-dorado); }
+    .riesgo-critico { background: var(--utp-rojo-light); border-left-color: var(--utp-rojo); }
+
     .section-title {
         font-size: 1.4rem; font-weight: 700;
-        color: #0a2240; border-bottom: 2px solid #0a2240;
+        color: var(--utp-morado); border-bottom: 2px solid var(--utp-morado);
         padding-bottom: 0.4rem; margin-bottom: 1rem;
     }
+
     .badge {
         display: inline-block;
         padding: 0.25rem 0.75rem;
@@ -65,22 +88,37 @@ st.markdown("""
         font-size: 0.8rem;
         font-weight: 600;
     }
-    .badge-green  { background: #d4edda; color: #155724; }
-    .badge-blue   { background: #cce5ff; color: #004085; }
-    .badge-yellow { background: #fff3cd; color: #856404; }
-    .badge-red    { background: #f8d7da; color: #721c24; }
+    .badge-green  { background: var(--utp-verde-light); color: var(--utp-verde); }
+    .badge-blue   { background: var(--utp-morado-light); color: var(--utp-morado); }
+    .badge-yellow { background: var(--utp-dorado-light); color: var(--utp-dorado-text); }
+    .badge-red    { background: var(--utp-rojo-light); color: var(--utp-rojo-text); }
+
     .report-box {
-        background: #f8f9fa;
+        background: var(--utp-card-bg);
         border-radius: 8px;
         padding: 1.5rem;
-        border: 1px solid #dee2e6;
+        border: 1px solid var(--utp-card-border);
         font-size: 0.95rem;
         line-height: 1.7;
         white-space: pre-wrap;
+        color: var(--utp-negro);
     }
+
+    /* Tarjeta generica reutilizable: fondo claro + texto oscuro garantizado,
+       evita el problema de texto invisible (blanco sobre blanco / oscuro sobre oscuro) */
+    .info-card {
+        background: var(--utp-card-bg);
+        border: 1px solid var(--utp-card-border);
+        border-radius: 8px;
+        padding: 0.8rem 1rem;
+        color: var(--utp-negro);
+    }
+    .info-card, .info-card * { color: var(--utp-negro); }
+
     div[data-testid="stSelectbox"] label { font-weight: 600; }
     .stTabs [data-baseweb="tab-list"] { gap: 8px; }
     .stTabs [data-baseweb="tab"] { padding: 8px 20px; border-radius: 6px 6px 0 0; }
+    .stTabs [aria-selected="true"] { color: var(--utp-morado) !important; }
 </style>
 """, unsafe_allow_html=True)
 
@@ -123,7 +161,7 @@ def sidebar_navigation() -> str:
     st.sidebar.markdown("""
     <div class="sidebar-logo">
         <h2 style="color:#ffffff; font-size:1.3rem; margin:0;">UTP Academic Advisor</h2>
-        <p style="color:#adb5bd; font-size:0.8rem; margin-top:0.3rem;">
+        <p style="color:#e8c97a; font-size:0.8rem; margin-top:0.3rem;">
             Sistema de Recomendacion Academica
         </p>
     </div>
@@ -147,7 +185,7 @@ def sidebar_navigation() -> str:
 
     st.sidebar.markdown("---")
     st.sidebar.markdown("""
-    <p style="font-size:0.75rem; color:#adb5bd; text-align:center;">
+    <p style="font-size:0.75rem; color:#e8c97a; text-align:center;">
         Universidad Tecnologica de Panama<br>
         Pipeline de Datos Academicos v1.0
     </p>
@@ -178,7 +216,7 @@ def page_panel_principal(df: pd.DataFrame, clustering_result: dict):
     with c2:
         st.markdown(f"""
         <div class="kpi-card riesgo-critico">
-            <div class="kpi-value" style="color:#e74c3c;">{en_riesgo}</div>
+            <div class="kpi-value" style="color:#c41f0f;">{en_riesgo}</div>
             <div class="kpi-label">En Riesgo o Suspension</div>
         </div>""", unsafe_allow_html=True)
     with c3:
@@ -197,7 +235,7 @@ def page_panel_principal(df: pd.DataFrame, clustering_result: dict):
         est_criticos = len(df[df["cluster_label"] == "Riesgo Critico"])
         st.markdown(f"""
         <div class="kpi-card riesgo-alto">
-            <div class="kpi-value" style="color:#f39c12;">{est_criticos}</div>
+            <div class="kpi-value" style="color:#8a6b00;">{est_criticos}</div>
             <div class="kpi-label">Riesgo Critico</div>
         </div>""", unsafe_allow_html=True)
 
@@ -215,7 +253,7 @@ def page_panel_principal(df: pd.DataFrame, clustering_result: dict):
             y="facultad_codigo",
             orientation="h",
             color="count",
-            color_continuous_scale="Blues",
+            color_continuous_scale=["#f3e6f3", "#7a1c79"],
             labels={"count": "Estudiantes", "facultad_codigo": "Facultad"},
             text="count"
         )
@@ -263,7 +301,7 @@ def page_panel_principal(df: pd.DataFrame, clustering_result: dict):
             y="gpa_promedio",
             markers=True,
             labels={"semestre": "Semestre Actual", "gpa_promedio": "GPA Promedio"},
-            color_discrete_sequence=["#0a2240"]
+            color_discrete_sequence=["#7a1c79"]
         )
         fig_sem.update_layout(height=280, margin=dict(l=0, r=0, t=10, b=0))
         fig_sem.update_xaxes(tickmode="linear", dtick=1)
@@ -403,11 +441,11 @@ def page_perfiles_estudiantes(df: pd.DataFrame):
             color = config['color']
             descripcion = config['descripcion']
             st.markdown(f"""
-            <div style="border-left: 4px solid {color}; 
+            <div style="border-left: 4px solid {color}; border: 1px solid #e6dbe6;
                         padding: 0.8rem; border-radius: 0 8px 8px 0;
-                        background: #f8f9fa; height: 100%;">
+                        background: #ffffff; color:#1d1d1b; height: 100%;">
                 <strong style="color:{color};">{perfil}</strong><br>
-                <small>{descripcion}</small><br><br>
+                <small style="color:#5a5a5a;">{descripcion}</small><br><br>
                 <b>{n_est}</b> estudiantes | GPA prom: <b>{prom_str}</b>
             </div>
             """, unsafe_allow_html=True)
@@ -515,7 +553,7 @@ def page_recomendaciones(df: pd.DataFrame, courses: pd.DataFrame, grades: pd.Dat
 
     with col_info:
         st.markdown(f"""
-        <div style="background:#f0f4f8; border-radius:8px; padding:1rem; margin-top:1.6rem;">
+        <div class="info-card" style="margin-top:1.6rem;">
             <b>{student_row['nombre_completo']}</b><br>
             {student_row['carrera']} | {student_row['facultad_codigo']}<br>
             Semestre {student_row['semestre_actual']} |
@@ -538,13 +576,13 @@ def page_recomendaciones(df: pd.DataFrame, courses: pd.DataFrame, grades: pd.Dat
     st.markdown("<br>", unsafe_allow_html=True)
     st.markdown("**Materias Recomendadas**")
 
-    colores_dificultad = {1: "#2ecc71", 2: "#27ae60", 3: "#f39c12", 4: "#e67e22", 5: "#e74c3c"}
+    colores_dificultad = {1: "#004411", 2: "#4a7a3d", 3: "#b98f00", 4: "#d1571b", 5: "#e52713"}
 
     for _, rec in recomendaciones.iterrows():
         col_num, col_main, col_meta = st.columns([0.5, 5, 2])
         with col_num:
             st.markdown(f"""
-            <div style="background:#0a2240; color:white; border-radius:50%;
+            <div style="background:#7a1c79; color:white; border-radius:50%;
                         width:36px; height:36px; display:flex;
                         align-items:center; justify-content:center;
                         font-weight:700; font-size:1rem; margin-top:0.3rem;">
@@ -554,12 +592,12 @@ def page_recomendaciones(df: pd.DataFrame, courses: pd.DataFrame, grades: pd.Dat
         with col_main:
             color_dif = colores_dificultad.get(int(rec["nivel_dificultad"]), "#999")
             st.markdown(f"""
-            <div style="border:1px solid #e0e0e0; border-radius:8px;
-                        padding:0.8rem 1rem; background:white;">
+            <div style="border:1px solid #e6dbe6; border-radius:8px;
+                        padding:0.8rem 1rem; background:#ffffff; color:#1d1d1b;">
                 <b style="font-size:1rem;">{rec['nombre']}</b>
-                <span style="color:#666; font-size:0.85rem;"> ({rec['codigo']})</span><br>
-                <span style="color:#555; font-size:0.85rem;">{rec['descripcion']}</span><br>
-                <span style="font-size:0.8rem; color:#777; margin-top:0.3rem; display:block;">
+                <span style="color:#5a5a5a; font-size:0.85rem;"> ({rec['codigo']})</span><br>
+                <span style="color:#3d3d3b; font-size:0.85rem;">{rec['descripcion']}</span><br>
+                <span style="font-size:0.8rem; color:#5a5a5a; margin-top:0.3rem; display:block;">
                     {rec['razon']}
                 </span>
             </div>""", unsafe_allow_html=True)
@@ -567,16 +605,17 @@ def page_recomendaciones(df: pd.DataFrame, courses: pd.DataFrame, grades: pd.Dat
         with col_meta:
             puntaje_pct = int(rec["puntaje_recomendacion"] * 100)
             st.markdown(f"""
-            <div style="text-align:center; padding-top:0.3rem;">
-                <div style="font-size:1.5rem; font-weight:700; color:#0a2240;">{puntaje_pct}%</div>
-                <div style="font-size:0.75rem; color:#666;">Compatibilidad</div>
+            <div style="background:#ffffff; border:1px solid #e6dbe6; border-radius:8px;
+                        text-align:center; padding:0.6rem; color:#1d1d1b;">
+                <div style="font-size:1.5rem; font-weight:700; color:#7a1c79;">{puntaje_pct}%</div>
+                <div style="font-size:0.75rem; color:#5a5a5a;">Compatibilidad</div>
                 <br>
                 <div>
                     <span style="color:{color_dif}; font-weight:600;">
                         {'|' * int(rec['nivel_dificultad'])} Dif. {int(rec['nivel_dificultad'])}/5
                     </span>
                 </div>
-                <div style="font-size:0.8rem; color:#555;">
+                <div style="font-size:0.8rem; color:#5a5a5a;">
                     {int(rec['creditos'])} creditos | Sem. {int(rec['semestre_recomendado'])}
                 </div>
             </div>""", unsafe_allow_html=True)
@@ -624,7 +663,7 @@ def page_informes_ia(df: pd.DataFrame, courses: pd.DataFrame, grades: pd.DataFra
         col_preview, col_btn = st.columns([3, 1])
         with col_preview:
             st.markdown(f"""
-            <div style="background:#f8f9fa; border-radius:8px; padding:0.8rem 1rem;">
+            <div class="info-card">
                 <b>{student_row['nombre_completo']}</b> |
                 {student_row['carrera']} |
                 Sem. {student_row['semestre_actual']} |

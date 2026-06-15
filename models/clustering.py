@@ -15,27 +15,32 @@ N_CLUSTERS = 4
 RANDOM_STATE = 42
 
 # Colores y configuracion visual por perfil para el dashboard
+# Colores alineados a la paleta oficial UTP (ver app.py):
+#   Alto Rendimiento    -> Verde institucional
+#   Rendimiento Regular -> Morado institucional
+#   En Riesgo           -> Dorado UTP
+#   Riesgo Critico      -> Rojo
 CLUSTER_CONFIG = {
     "Alto Rendimiento": {
-        "color": "#2ecc71",
+        "color": "#004411",
         "descripcion": "Estudiante con excelente desempeno academico, alta asistencia y minima tasa de reprobacion.",
         "recomendacion_general": "Considerar materias avanzadas o electivas de especializacion.",
         "icono": "estrella"
     },
     "Rendimiento Regular": {
-        "color": "#3498db",
+        "color": "#7a1c79",
         "descripcion": "Estudiante con desempeno academico adecuado, cumple con los estandares minimos requeridos.",
         "recomendacion_general": "Reforzar materias de mayor dificultad y mantener habitos de estudio.",
         "icono": "libro"
     },
     "En Riesgo": {
-        "color": "#f39c12",
+        "color": "#b98f00",
         "descripcion": "Estudiante con indicadores de alerta: GPA bajo, asistencia irregular o alto nivel de reprobaciones.",
         "recomendacion_general": "Se recomienda asesoria academica y reduccion de carga de materias.",
         "icono": "alerta"
     },
     "Riesgo Critico": {
-        "color": "#e74c3c",
+        "color": "#e52713",
         "descripcion": "Estudiante en situacion critica con multiples indicadores de desercion o suspension academica.",
         "recomendacion_general": "Requiere intervencion inmediata del departamento academico y apoyo psicopedagogico.",
         "icono": "critico"
